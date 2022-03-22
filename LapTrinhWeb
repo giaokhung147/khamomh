@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Bài kiểm tra định kỳ lần 2</title>
+        <link rel="stylesheet" href="../CSS/bootstrap.min.css" type="text/css">
+        <script src="../JS/KT.js"></script>
+        <meta charset="utf-8">
+        <style type="text/css">
+            #test{
+                width:100px;
+                height:100px;
+                position:relative;
+                left:0px;
+                animation-name:move_right;
+                animation-duration:3s;
+                animation-iteration-count:infinite;
+            }
+            @keyframes move_right{
+                0%{left:0px;}
+                100%{left:100%;}
+            }
+        </style>
+    </head>
+    <body>
+        <div style="float:left">
+            <img src="../IMG/logotgc.png">
+        </div>
+        <div style="float:right">
+            <img src="../IMG/logotgc.png">
+        </div>
+    </div>
+        <center><h2 style="color: rgb(56, 108, 221);">TRƯỜNG CAO ĐẲNG TIỀN GIANG</h2></center>
+        <center><h3 style="color: rgb(56, 108, 221);">KHOA KINH TẾ-TỔNG HỢP</h3></center>
+        <center><h4 style="color: rgb(241, 38, 38);">LỚP CNT20C1 - HỌ VÀ TÊN:NGÔ MINH KHA</h4></center>
+</br>
+<div style="background-color: black; height: 30px;">
+    <div id="test" style="color: white;">
+        <p id="hvn"></p>
+        <script>
+            var today = new Date();
+            var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+            var dateTime = date;
+            document.getElementById("hvn").textContent = dateTime;
+         </script>
+    </div>
+</div>
+</br>
+<div style="border: solid;float: left;width: 80%;">
+    <h3 style="color:red" class="text-center">Chương trình môn học Lập trình web cơ bản</h1>
+    <table border="1" style="text-align: center;width: 100%;;margin: auto;
+border-color: black;border-width: 2px;border-collapse: collapse;height: 200px;">
+ <tr style="color:white;background-color: blue;">
+    <td style="border-width: 2px" rowspan="2"><b>TT</b></td>
+    <td style="border-width: 2px" rowspan="2"><b>Tên bài học</b></td>
+    <td style="border-width: 2px" colspan="4"><b>Thời gian</b></td>
+    <td style="border-width: 2px" rowspan="2"><b>Tự học</b></td>
+</tr>
+<tr style="background-color:blue;color: white;">
+    <td style="border-width: 2px"><b>Tổng số</b></td>
+    <td style="border-width: 2px"><b>Lý thuyết</b></td>
+    <td style="border-width: 2px"><b>Thực hành</b></td>
+    <td style="border-width: 2px"><b>Kiểm tra</b></td>
+</tr>
+<tr style="background-color: rgb(212, 211, 211);">
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">Bài 1: Tổng quan về HTML và HYPER LINK</td>
+    <td style="border-width: 2px">4</td>
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">3</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">3.5</td>
+</tr>
+<tr>
+    <td style="border-width: 2px">2</td>
+    <td style="border-width: 2px">Bài 2: Thiết kế website với các thẻ HTML cơ </br><p style="float: left;">bản</p></td>
+    <td style="border-width: 2px">4</td>
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">3</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">3.5</td>
+</tr>
+<tr style="background-color: rgb(212, 211, 211);">
+    <td style="border-width: 2px">3</td>
+    <td style="border-width: 2px">Bài 3: Thiết kế website bằng table</td>
+    <td style="border-width: 2px">4</td>
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">3</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">3.5</td>
+</tr>
+<tr>
+    <td style="border-width: 2px">4</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">-</td>
+</tr>
+<tr style="background-color: rgb(212, 211, 211);">
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">-</td>
+</tr>
+<tr>
+    <td style="border-width: 2px">8</td>
+    <td style="border-width: 2px">Bài 8: Tổng quan về JavaScript</td>
+    <td style="border-width: 2px">4</td>
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">2</td>
+    <td style="border-width: 2px">1/td></td>
+    <td style="border-width: 2px">3.5</td>
+</tr>
+<tr style="background-color: rgb(212, 211, 211);">
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">-</td>
+</tr>
+<tr>
+    <td style="border-width: 2px">16</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px">-</td>
+    <td style="border-width: 2px"></td>
+    <td style="border-width: 2px">-</td>
+</tr>
+<tr style="background-color: rgb(212, 211, 211);">
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">Bài 16: Làm việc với sự kiện nhấp chuột</td>
+    <td style="border-width: 2px">8</td>
+    <td style="border-width: 2px">1</td>
+    <td style="border-width: 2px">5</td>
+    <td style="border-width: 2px">2</td>
+    <td style="border-width: 2px">7</td>
+</tr>
+    </table>
+</br>
+</div>
+<div style="float: right;">
+<div class="container text-dark" style="background-color:rgb(102, 230, 230);border-style:double;border-radius: 10px; ">
+    <div class="row">
+        <div class="col" align="center">
+           <h3>Đăng nhập</h3>
+        </div>               
+        <hr style="height: 2px;width: 100%; border-width:0;background-color:blue">
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                   <div class="col">
+                            <input type="text" class="form-control" placeholder="Nhập vào tên tài khoản">
+                   </div>
+               </div>
+            </br>
+               <div class="row">
+               <div class="col">
+                   <input type="text" class="form-control" placeholder="Nhập vào mật khẩu">
+               </div>
+           </div>
+            </br>
+           <div class="row col-sm-12">
+               <div class="col text-center">
+                    <input type="submit" value="Đăng nhập" class="btn btn-success">
+               </div>
+           </div>
+        </br>
+        </div>
+    </div>
+</div>
+    </div>  
+</div>  
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+<h1 class="text-center text-black p-1">Quản lý tài khoản</h1>
+<div class="modal-body">
+    <div class="container bg-light border rounded border-primary">                       
+            <div class="formmain">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" id="txtuser" class="form-control" placeholder="Tên tài khoản"/>
+                        <input type="text" id="txtht" class="form-control" placeholder="Họ và Tên"/>
+                        <input type="email" id="txtemail" class="form-control" placeholder="Địa chỉ email"/>
+                        <select id="sl" class="form-control">
+                            <option value="Tiền Giang">Tiền Giang </option>
+                            <option value="Long An">Long An</option>
+                            <option value="Bến Tre">Bến Tre</option>
+                            <option value="Vĩnh Long">Vĩnh Long</option>
+                            <option value="Hậu Giang">Hậu Giang</option>
+                        </select>
+                </div>            
+                
+            </div>
+                <div class="row p-1">
+                    <div class="col text-center">                      
+                        <input type="button" value="Cập nhật" data-dismiss="modal" class="btn btn-warning" style="visibility: hidden;" id="btnluu"
+                        onclick="capnhat()"/>
+                        <input type="button" value="Bỏ qua" data-dismiss="modal" class="btn btn-info" style="visibility: hidden;" id="btnbo"
+                        onclick="skip()"/>
+                    </div>
+                </div>
+            </div>
+  </div>
+  <center><input type="button" class="btn btn-success" id="btnthem" value="Thêm" onclick="validate();"></center>
+  <div>
+    <table id="tbl" class="table table-bordered">
+        <tr>
+            <th class="text-center bg-primary text-white border-dark">Tên tài khoản</th>
+            <th class="text-center bg-primary text-white border-dark">Họ tên người dùng</th>
+            <th class="text-center bg-primary text-white border-dark">Địa chỉ email</th>
+            <th class="text-center bg-primary text-white border-dark">Địa chỉ</th>
+            <th class="text-center bg-primary text-white border-dark">Tác vụ</th>   
+        </tr>
+    </table>
+</div>
+<table style="border-width: 0;background-color: rgb(47, 72, 214);width: 100%;height: 50px;">
+    <tr>
+        <td style="color: white;">
+           <center><b>Kiểm tra định kỳ lần 3</b> - ngày 15/03/2022</center>
+        </td>
+    </tr>
+        </table>
+    </body>
+</html>
