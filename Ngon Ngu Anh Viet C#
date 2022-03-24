@@ -1,0 +1,32 @@
+--Nut tinh
+ int hocphi = 0, giamgia = 0, lephi = 0, tongtien = 0;
+            if (A.Checked == true)
+            {
+                hocphi = 750000;            
+            }
+            else if (B.Checked == true)
+            {
+                hocphi = 850000;
+            }
+            else if (C.Checked == true)
+            {
+                hocphi = 1100000;
+            }
+            else if (D.Checked == true)
+            {
+                hocphi = 1050000;
+            }
+            Hocphi.Text = hocphi.ToString();
+            if(cb1.SelectedItem =="Ôn thi")
+            {
+                giamgia = hocphi * 10 / 100;
+            }
+            else if(cb1.SelectedItem == "Học bình thường")
+            {
+                giamgia = 0;
+            }
+            Giamgia.Text = giamgia.ToString();
+            lephi = hocphi * 20 / 100;
+            Lephi.Text = lephi.ToString();
+            tongtien = hocphi + lephi - giamgia;
+            tt.Text = tongtien.ToString();
