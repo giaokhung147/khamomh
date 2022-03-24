@@ -30,3 +30,24 @@
             Lephi.Text = lephi.ToString();
             tongtien = hocphi + lephi - giamgia;
             tt.Text = tongtien.ToString();
+--In danh sach
+ hten.Items.Add(Htensv.Text);
+            ngsinh.Items.Add(Ngaysinh.Text);
+            hth.Items.Add(cb1.Text);
+            if(A.Checked==true)
+            { 
+            chungchi.Items.Add(A.Text);
+            }
+           else if (B.Checked == true)
+            {
+                chungchi.Items.Add(B.Text);
+            }
+           else if (C.Checked == true)
+            {
+                chungchi.Items.Add(C.Text);
+            }
+           else if (D.Checked == true)
+            {
+                chungchi.Items.Add(D.Text);
+            }
+            tongtien.Items.Add(tt.Text);
