@@ -1,0 +1,57 @@
+ --Nut Tinh
+ int csc, csm;
+            int sksd, tdm, vdm, tongtsd = 0, vat1 = 0, tienpt = 0;
+            int nk = Convert.ToInt32(SONK.Text);
+            csc = Convert.ToInt32(CSOCU.Text);
+            csm = Convert.ToInt32(CSOMOI.Text);
+            sksd = csm - csc;
+            SM3.Text = sksd.ToString();
+            if (nk < 4)
+            {
+                tdm = 12;
+                vdm = sksd - tdm;
+            }
+            else
+            {
+                tdm = 15;
+                vdm = sksd - tdm;
+            }
+            SM3DM.Text = tdm.ToString();
+            SM3VM.Text = vdm.ToString();
+            tongtsd = tdm * 3500 + vdm * 4500;
+            TTDUNG.Text = tongtsd.ToString();
+            vat1 = tongtsd * 10 / 100;
+            VAT.Text = vat1.ToString();
+            tienpt = tongtsd + vat1;
+            TTPTra.Text = tienpt.ToString();
+  --In danh sach
+  txtinhd.Text = "Khách hàng " + txtkh.Text + "\r\n Số nhân khẩu: " + SONK.Text;
+  --Chi so moi
+    csc = Convert.ToInt32(CSOCU.Text);
+                csm= Convert.ToInt32(CSOMOI.Text);
+                if(csc>csm)
+                {
+                    MessageBox.Show("Chỉ số mới phải lớn hơn chỉ cũ!!!", "Thông báo");
+                }
+                else
+                {
+                    csm = Convert.ToInt32(CSOMOI.Text);
+                }
+   -- chi so cu
+   try
+            {
+                int csc = Convert.ToInt32(CSOCU.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Chỉ số cũ phải là số", "Thông báo");
+            }
+   --So nhan khau
+     try
+            {
+                int nk = Convert.ToInt32(SONK.Text);
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show("Nhân khẩu phải là số", "Thông báo");
+            }
