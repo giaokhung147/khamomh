@@ -1,0 +1,143 @@
+var img= "../img/download.png";
+$(document).ready(function(){
+    $("th").addClass("bg-primary text-white text center");
+    $("#avatar").on("click",function(){
+        $("fileUpload").click();
+    });
+    $("#fileUpload").on("change",function(){
+        var file=$("#fileUpload").get(0);
+        var reader = new FileReader();
+        reader.readAsDataURL(file.file[0]);
+        reader.onload=function(){
+            $("#avatar").attr("src",reader.result);
+            img=reader.result;
+        };
+    });
+    $("#btnadd").on("click",Savedata());
+    Loaddata();
+})
+function Savedata()
+{
+    alert("abc")
+    if(validate())
+    {
+        SaveLocal();
+    }
+}
+function SaveLocal()
+{
+        var hoten = $("#txthoten").val();
+        var Diachi = $("#txtdiachi").val();
+        var Email = $("#email").val();
+        var ngaysinh = $("#Ngsinh").val();
+        var SODT = $("#txtDT").val();
+        var avatar=img;
+        var id=Date.now();
+        localStorage.setItem(id,JSON.stringify({
+            "hoten":hoten,"ngaysinh":ngaysinh,"diachi":Diachi,"email":Email,"dienthoai":SODT,"avatar":avatar
+        }));
+        resetform();
+        Loaddata();
+}
+function Loaddata()
+{
+    var tbl=document.getElementById("tbl");
+    var sodong=localStorage.length;
+    var rows =$("tr");
+    for(let i=1;i<sodong;i++) rows[i].remove();
+    for(let i=0;i<sodong;i++)
+    {
+        var id=localStorage.key(i);
+        var data =JSON.parse(localStorage.getItem(id));
+        var row = tbl.insertRow(i+1);
+        row.setAttrbute("id",id);
+        var cell0=row.insertCell(0);
+        var cell1=row.insertCell(1);
+        var cell2=row.insertCell(2);
+        var cell3=row.insertCell(3);
+        var cell4=row.insertCell(4);
+        var cell5=row.insertCell(5);
+        var cell6=row.insertCell(6);
+        var cell7=row.insertCell(7);
+        cell0.innerHTML=i+1;
+        cell1.innerHTML="<img src='"+data.avatar+"' height='50px'/>";
+        cell2.innerHTML=data.hoten;
+        cell3.innerHTML=data.ngaysinh;
+        cell4.innerHTML=data.diachi;
+        cell5.innerHTML=data.email;
+        cell6.innerHTML=data.SODT;
+        var nutxoa= "<img src=\"../img/Delete-icon.png\"";
+        nutxoa+="onclick=\"xoadong(\""+id+"\")\"/>";
+        var nutxoa= "<img src=\"../img/Edit-icon.png\"";
+        nutsua+="onclick=\"suadong(\""+id+"\")\"/>";
+        cell7.innerHTML=nutxoa+"|"+nutsua;
+    }
+    $("#"+id+" td").addClass("boder boder-dark text-center");
+}
+function isEmpty(str) {
+    return str.length > 0 ? true : false;
+}
+function isEmail(str) {
+    const pattern = /^[a-z][a-ze0-9_]{2,32}@[a-z]{3,5}\.[a-z]{2,3}$/; 
+    return pattern.test(str);
+}
+function isBirthDay(str) {
+    const pattern = /^(\d{1,2})V(\d{1,2})\/(\d{4})$/;
+    if (pattern.test(str)) 
+    {
+        let array = str.split('/');
+        let d = parseInt(array[0], 10);
+        let m = parseInt(array[1], 10);
+        let y = parseInt(array[2], 10);
+        let date = new Date(y, m - 1, d);
+        if (date.getFullYear () == y && date.getMonth() + 1 == m && date.getDate()==d)
+            return true;
+        else
+            return false;
+    }
+    return false;
+}
+function isEmail(str) {
+        const pattern =/^[a-z][a-ze-9_]{2,32}@[a-z]{3,5}\.[a-z]{2,3}$/; 
+        return pattern.test(str);
+    }
+function isPhone(str) {
+        const pattern=/(^@[3|5\7\8\9])+[0-9]{8}\b/; 
+        return pattern.test(str);          
+    }
+    function validate()
+    {
+        var hoten = $("#txthoten").val();
+        var Diachi = $("#txtdiachi").val();
+        var Email = $("#email").val();
+        var ngaysinh = $("#Ngsinh").val();
+        var SODT = $("#txtDT").val();
+        var ketqua=true;
+        var loi="";
+        if(isEmpty(hoten)){
+            ketqua = false;
+            loi+="\nHọ tên không được bỏ trống";
+        }
+        if(isPhone(SODT)){
+            ketqua=false;
+            loi+="\n Điện thoại chưa đúng dịnh dạng";
+        }
+        if(isEmail(Email)){
+            ketqua=false;
+            loi+="\nEmail chưa đúng định dạng";
+        }
+        if(isBirthDay(ngaysinh)){
+            ketqua=false;
+            loi+="\n Nhập ngày sinh không đúng";
+        }
+        return ketqua;
+}
+function xoadong(dong)
+{
+    id(confirm("Bạn có chắc muốn xóa không?"))
+    {
+        localStorage.removeItem(dong);
+        Loaddata();
+    }
+}
+
