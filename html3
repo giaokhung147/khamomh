@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Thi kết thúc môn - lập trình wed</title>
+        <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/de3.css">
+        <script src="../JS/jquery-3.6.0.min.js"></script>
+        <script src="../js/de3.js"></script>
+    </head>
+    <body>
+        <div class="container bg light border primary">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center text-primary">Quản Lý Sinh Viên</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <form action="" class="border rounded border-dark">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4">Ảnh đại diện: </div>
+                                <div class="col-8">
+                                     <img src="../img/avatar.jpg" alt="avatar"
+                                    width="100px" id="avatar">
+                                    <input type="file" id="fileUpLoad" style="display: none;"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Họ tên: </div>
+                                <div class="col-8">
+                                    <input type="text" id="hoten"  class="form-control" placeholder="Nhập vào tên tài khoản">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Email: </div>
+                                <div class="col-8">
+                                    <input type="text" id="Email"  
+                                    class="form-control" 
+                                    placeholder="Nhập vào Email">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Địa chỉ: </div>
+                                <div class="col-8">
+                                    <input type="text" id="diachi"  
+                                    class="form-control" 
+                                    placeholder="Nhập vào địa chỉ">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Điện thoại: </div>
+                                <div class="col-8">
+                                    <input type="text" id="sdt"  
+                                    class="form-control" 
+                                    placeholder="Nhập vào số điện thoại">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">giới tính: </div>
+                                <div class="col-8">
+                                    <input type="radio" name="phai" id="phainam" checked/>Nam
+                                    <input type="radio" name="phai" id="phainu"/>Nữ
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                     <input type="submit" value="lưu" style="background-color: #8A2BE2;color: white;">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-8">
+                    <table id="tbl" class="table table-hover">
+                        <tr>
+                            <th>#</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Giới tính</th>
+                            <th>Ảnh đại diện</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
