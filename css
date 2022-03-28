@@ -1,0 +1,202 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; 
+}
+.warpper {
+    width: 1045px;
+    min-height: 938px;
+    margin: 5px auto ;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-image: linear-gradient(#fff, #7ad1e9);
+   /* padding: 6px 3px 2px 3px;*/
+}
+.header {
+    background: url('../IMG/banner.jpg');
+    background-repeat: no-repeat;
+    width: 1020px;
+    height: 135px;
+    background-size:1020px 135px ;
+    background-position: center 6px;
+    margin: auto;
+    position: relative;
+    padding-top: 6px;
+}
+.header .intro{
+    text-transform: uppercase;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    bottom: 9px;
+    font-size: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.py-16{
+    padding: 16px 0;
+}
+.diadiem{
+    width: 318px;
+    border: 1px solid #007bff;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-left: 18px;
+    padding-top: 8px;
+    padding-bottom: 20px;
+}
+.diadiem h3{
+    text-align: center;
+    color: #007bff;
+    font-size: 18px;
+}
+.diadiem ol{
+    margin-left: 40px;
+}
+.text-warring{
+    color: yellow;
+}
+.text-error{
+    color: #e13545;
+}
+.text-primary{
+    color: #007bff;
+}
+.text-blur{
+    color: #7ad1e9;
+}
+.giatour{
+    background-color: rgb(121, 121, 24);
+    width: 460px;
+    padding-left: 16px;
+    border-radius: 5px;
+    border:blue 1px solid;
+    margin-left: 16px;
+    padding-bottom: 10px;
+}
+.giatour table{
+    margin-left: 36px;
+}
+.giatour h3{
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    color: #007bff;
+    margin-top: 7px;
+}
+.giatour img{
+    width: 26px;
+    height: 20px;
+}
+.row-df{
+    display: flex;
+}
+.dangnhap{
+    width: 232px;
+    background-color: greenyellow;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+    padding-bottom: 27px;
+    margin-left: 27px;
+}
+.dangnhap input{
+    padding: 12px;
+    color:#6ca3d5;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid #ced4da;
+}
+.dangnhap button{
+    padding:14px ;
+    background-color: greenyellow;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+}
+.dangnhap h3{
+    color: #343a40;
+    padding: 15px 0;
+}
+.dangnhap h3 :after{
+    content: "";
+    width: 96%;
+    background-color: blue;
+    position: absolute;
+    bottom: 0;
+}
+.row-tour{
+    padding: 18px 18px 7px 18px;
+}
+.qlt{
+    text-transform:  uppercase;
+    color: blue;
+    text-align: center;
+    background-color: white;
+}
+form{
+    border-radius: 5px;
+    border: 1px solid #2f4f4f;
+    background-color: #fff;
+    margin-top: 7px;
+    position: relative;
+}
+.vientrang{
+    border-radius: 5px;
+    background-color: #343a40;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 17px 3px 17px;
+    color: #fff;
+}
+.vientrang input, .vientrang select{
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 100%;
+    display: block;
+}
+.vientrang .col{
+    width: 100%;
+}
+.vientrang .col + .col{
+    padding-left: 27px;
+
+}
+.vientrang label{
+    margin:13px 0;
+}
+.vientrang .col p label{
+    margin: 13px 0;
+    display: block;
+}
+.row-them{
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 0px 6px;
+}
+#them{
+    padding: 13px;
+    background-color: #17a2b8;
+    border-radius:  5px;
+    border:  none;
+    color: rgb(161, 18, 18);
+    width: 18%;
+    cursor: pointer;
+}
+.row .list{
+    margin-top: 7px;
+    margin-bottom: 18px;
+    border-collapse: collapse;
+}
+.row .list td, .list th{
+    border: 1px solid black;
+    padding: 17px 13px;
+    margin: 0 6px;
+    width: 200px;
+}
