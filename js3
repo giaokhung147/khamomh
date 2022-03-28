@@ -1,0 +1,137 @@
+$(document).ready(function(){
+    $("th").addClass("bg-primary text-white text-center border"); //thiết kế table th
+    $("#avatar").on ("click",openfile);
+     //lấy ảnh trong file
+    $("#fileUpLoad").on("change", function(e){
+        var file = e.target.files[0];
+       var reader = new FileReader();
+        reader.readAsDataURL(file);         
+        reader.onload= function(){
+            $("#avatar").attr("src",reader.result);
+            savelocal(reader);
+        };
+
+    });
+        loadlocal();
+    });
+    function openfile()
+    {
+       $("#fileUpLoad").click();
+    }
+    function savelocal(reader)
+    {
+        var id= Date.now();
+        localStorage.setItem(id,JSON.stringify({"avatar":reader.result}));
+    }
+    function loadlocal()
+    {
+        var sodong= localStorage.length;
+        for(let i=0; i<localStorage.length;i++)
+        {
+        var tbl = document.getElementById("tbl");
+        var row = tbl.insertRow(i+1);
+        var id= localStorage.key(i);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        var cell5 = row.insertCell(5);
+        var cell6 = row.insertCell(6);
+        var cell7 = row.insertCell(7);
+        var data= JSON.parse(localStorage.getItem(id));
+        row.setAttribute("id",id);
+        cell0.innerHTML=i+1;
+        cell6.innerHTML = "<img src=\""+data.avatar+"\" height=\"60\"/>";
+        $("#"+id+" td").addClass("border text-center");
+        }
+    }
+    num=1;
+    function validate()
+{
+        var tbl = document.getElementById("tbl");
+        var row = tbl.insertRow(num);
+        var cell1= row.insertCell(0);
+        var cell2=row.insertCell(1);
+        var cell3=row.insertCell(2);
+        var cell4=row.insertCell(3);
+        var cell5=row.insertCell(4);
+        var cell6=row.insertCell(5);
+        var cell7=row.insertCell(6);
+        cell1.innerHTML=document.getElementById("hoten").value;
+        cell2.innerHTML=document.getElementById("Email").value;
+        cell3.innerHTML=document.getElementById("diachi").value;
+        cell4.innerHTML=document.getElementById("sdt").value;
+        var phai=document.getElementById("phainam").checked;
+        var kqphai=phai?"Nam":"Nữ";
+        cell5.innerHTML=kqphai;
+        num++;
+        row.setAttribute("id","tr_"+num);
+        var nutxoa="<input type='button' class='btn btn-danger' value='Xóa'";
+        nutxoa+="onclick=\"Xoadong(\'tr_"+num+"\')\"/>";
+        var nutsua="<input type='button' class='btn btn-warning' data-toggle='modal' data-target='#myModal'  value='Sửa'" ;
+        var num
+        nutsua+="onclick=\"Suadong(\'tr_"+num+"\')\"/>";
+        cell5.innerHTML=nutsua+" "+nutxoa;
+        cell1.setAttribute("class","border boder-dark");
+        cell2.setAttribute("class","border boder-dark");
+        cell3.setAttribute("class","border boder-dark");
+        cell4.setAttribute("class","border boder-dark");
+        cell5.setAttribute("class","border boder-dark text-center");
+    num++;
+}
+function Xoadong(dong)
+{
+    if(confirm("bạn có chắc chắn xóa chứ?"))
+    {
+        var xoadong=document.getElementById(dong);
+        xoadong.remove();
+        num--;
+    }
+}
+function Suadong(dong)
+{
+    document.getElementById("btnluu").setAttribute("style","visibility:visible");
+    document.getElementById("btnbo").setAttribute("style","visibility:visible");
+    var dulieu = document.getElementById(dong);
+    document.getElementById("hoten").value=dulieu.cells.item(0).innerHTML;
+    document.getElementById("Email").value=dulieu.cells.item(1).innerHTML;
+    document.getElementById("diachi").value=dulieu.cells.item(2).innerHTML;
+    document.getElementById("sdt").setAttribute("style","visibility:hidden");
+    document.getElementById("btnluu").textContent = dong;                                                                                                                                                               
+    var phai = dulieu.cells.item(3).innerHTML;
+    if(phai==="Nam")
+    document.getElementById("phainam").checked=true;
+    else
+    document.getElementById("phainu").checked=true;
+    document.getElementById("slquequan").value=dulieu.cells.item(3).innerHTML;
+}
+function skip()
+{
+    document.getElementById("btnluu").setAttribute("style","visibility:hidden")
+    document.getElementById("btnbo").setAttribute("style","visibility:hidden")
+    document.getElementById("btnthem").setAttribute("style","visibility:visible")
+    document.getElementById("hoten").value="";
+    document.getElementById("Email").value="";
+    document.getElementById("diachi").value="";
+    document.getElementById("sdt").value=""
+}
+function capnhat()
+{
+
+        var dong = document.getElementById("btnluu").textContent;
+        var dulieu = document.getElementById(dong);
+        dulieu.cells.item(0).innerHTML=document.getElementById("hoten").value;
+        dulieu.cells.item(1).innerHTML=document.getElementById("Email").value;
+        dulieu.cells.item(2).innerHTML=document.getElementById("diachi").value;
+        dulieu.cells.item(3).innerHTML=document.getElementById("sdt").value;
+        dulieu.cells.item(2).innerHTML=document.getElementById("phainam").checked?"Nam":"Nữ";
+        skip();
+        var diadiem=document.getElementById("diadiem").value;
+    var gia=document.getElementById("gia").value;   
+    var ngay=document.getElementById("ngay").value;   
+    var ht=document.getElementById("ht").value;
+    localStorage.setItem(dong,JSON.stringify({"diadiem":diadiem,
+    "gia":gia,"ngay":ngay,"ht":ht}));
+    skip();
+}
