@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <title>Thi học kì----Thao Quách Kim Phát</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/BAI_THI.js"></script>
+</head>
+<body>
+<div class="container main ">
+    <div class="row bg-light">
+        <div class="col text-right">
+            <label for="" class="text-danger">Xin chào Admin</label>&nbsp;|
+            <a href="#">Log out</a>
+        </div>
+    </div>
+    <div class="row p-1">
+        <div class="col">
+            <h1 class="text-primary text-center">QUẢN LÝ HỌC VIÊN</h1>
+        </div>
+    </div>
+    <div class="row p-1">
+        <div class="col text-right">
+            <input type="button" id="btnthem" value="Thêm" class="btn btn-primary" data-toggle="modal" data-target="#userbox">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table id="tbl" class="table table-hover">
+                <tr>
+                    <th>STT</th> 
+                    <th>Ảnh đại diện</th>
+                    <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>Điện thoại</th>
+                    <th>Chức năng</th>
+                </tr>
+            </table>
+        </div> 
+    </div>
+</div>
+<!--modal-->
+<div class="container ">
+    <div class="modal fade" id="userbox" role="dialog">
+        <div class="modal-dialog ">
+            <!--modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-left" id="tieude">Nhập thông tin học viên</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="formmain">
+                        <div class="container">
+                        <div class="row p-1">
+                            <div class="col-5">
+                                <label for="">Hình đại diện</label>
+                                
+                            </div>
+                            <div class="col-9">
+                                <img src="../img/download.png" alt="avatar" width="50px" id="avatar" style="cursor: pointer;">
+                                    <input type="file" id="fileUpLoad" style="display: none;"/>
+                            </div>                            
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3">
+                                <label for="">Họ và tên:</label>
+                            </div>
+                            <div class="col-9"> 
+                                <input type="text" id="txthoten" class="form-control" placeholder="Nhập họ tên"> 
+                            </div>                            
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3">
+                                <label for="">Địa chỉ</label>
+                            </div>
+                            <div class="col-9"> 
+                                <input type="text" id="txtdiachi" class="form-control" placeholder="Nhập Địa chỉ"> 
+                            </div>                            
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3">
+                                <label for="">Email</label>
+                            </div>
+                            <div class="col-9"> 
+                                <input type="text" id="email" class="form-control" placeholder="Nhập email"> 
+                            </div>                            
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3">
+                                <label for="">Ngày sinh:</label>
+                            </div>
+                            <div class="col-9"> 
+                                <input type="text" id="txtNgsinh" class="form-control" placeholder="Nhập ngày sinh"> 
+                            </div>                            
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3">
+                                <label for="">Điện thoại:</label>
+                            </div>
+                            <div class="col-9"> 
+                                <input type="text" id="txtDT" class="form-control" placeholder="Nhập số điện thoại"> 
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="modal-footer">
+                <input type="button" value="Cập nhật" class="btn btn-warning" style="visibility: hidden;" id="btnluu"onclick="capnhat()" data-dismiss="modal"/>
+               <input type="button" value="Bỏ qua" class="btn btn-info" style="visibility: hidden;" id="btnbo"onclick="skip()" data-dismiss="modal"/>
+                <input type="button" value="Thêm" class="btn btn-success"; id="btnadd" onclick="Savedata()">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" id="btndong">Đóng</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
