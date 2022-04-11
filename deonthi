@@ -1,0 +1,114 @@
+a)	Tạo cơ sở dữ liệu THI_QLD_TEN_LOP gồm các table như hình 1 (Khai báo tất cả các ràng buộc khóa chính, khóa ngoại để liên kết giữa các bảng)
+-	Tạo CSDL 
+USE MASTER
+GO
+CREATE DATABASE THI_QLD_TEN_LOP 
+GO
+-	Tạo bảng LOP (MALOP, TENLOP, SISO) 
+CREATE TABLE LOP
+(
+	MaLop varchar(7) NOT NULL CONSTRAINT pk_LOP_MaLop PRIMARY KEY,
+	TenLop nvarchar(50), 
+	SiSo tinyint )
+HOCVIEN (MaHV, HoHV, TenHV, NgSinh, GioiTinh, noiSinh, MaLop) 
+CREATE TABLE HOCVIEN
+(
+	MaHV varchar(10) NOT NULL CONSTRAINT pk_HV_MaHV PRIMARY KEY,
+	HoHV nvarchar(20)NULL,
+	TenHV nvarchar(20) NULL,
+	GioiTinh nvarchar(3)NULL,
+	NgSinh date  NULL,
+	NoiSinh nvarchar(50)NULL,
+	MaLop varchar(7) NOT NULL
+	CONSTRAINT fk_HV_MaLop FOREIGN KEY(MaLop) REFERENCES LOP(MaLop)
+)
+ (hoặc khóa ngoại
+	ALTER TABLE HOCVIEN ADD CONSTRAINT fk_HV_MaLop FOREIGN KEY(MaLop) REFERENCES LOP(MaLop))
+MONHOC(MaMH, TenMH, Diem) 
+CREATE TABLE MONHOC
+(
+	MaMH varchar(5) NOT NULL CONSTRAINT pk_MH_MaMH PRIMARY KEY, 
+	TenMH nvarchar(50) NULL, 
+	SoTiet tinyint NULL		
+)
+KETQUA(MaHV, MaMH, Diem) 
+CREATE TABLE KETQUA
+(
+	MaHV varchar(10) NOT NULL,
+	MaMH varchar(5) NOT NULL,
+	CONSTRAINT pk_KQ_MaHV_MaMH PRIMARY KEY(MaHV,MaMH),
+	Diem decimal(5,2)  NULL,
+	CONSTRAINT pk_KQ_MaHV FOREIGN KEY(MaHV) REFERENCES HOCVIEN(MaHV),
+	CONSTRAINT pk_KQ_MaMH FOREIGN KEY(MaMH) REFERENCES MONHOC(MaMH)
+)
+b)	Thêm thuộc tính KQThi có dữ liệu kiểu chuỗi với độ dài 15 cho bảng KetQua
+  ALTER TABLE KetQua  ADD KQThi NVARCHAR(15) NULL
+c)	Tạo các ràng buộc sau:
+	MaHV phải có độ dài trên 4 và 2 ký tự đầu bắt buộc là chữ cái và ký tự thứ ba là số 
+ALTER TABLE HOCVIEN
+ADD CONSTRAINT check_HV_MaHV check (LEN(MaHV)>4 AND MaHV LIKE '[A-Z][A-Z][0-1]%')
+	Diem của học viên chỉ nhận giá trị từ 0 đến 10
+ALTER TABLE KETQUA ADD CONSTRAINT 
+chk_Diem CHECK (Diem BETWEEN 0 AND 10)
+	GioiTinh chỉ nhận giá trị là Nam hoặc Nữ ? 
+ALTER TABLE HOCVIEN 
+ADD CONSTRAINT chk_phai CHECK (Phai IN (N'Nam',N'Nữ'))
+d)	Hãy nhập dữ liệu cho 4 bảng (ghi chú mỗi 5 dòng)
+Nhập dữ liệu LOP 
+INSERT INTO LOP(MaLop, TenLop, SiSo) 
+VALUES('TH01',N'Quản trị Mạng máy tính',18)
+Nhập dữ liệu MONHOC
+INSERT INTO MONHOC (MaMH, TenMH, SoTiet) VALUES('THCB', N'Tin học cơ bản',45)
+HOCVIEN(MaHV, HoHV, TenHV, GioiTinh, NgSinh, noiSinh, MaLop) 
+INSERT INTO HOCVIEN VALUES('HV001', N'Nguyễn Văn', N'Danh', N'Nam', '03/23/1997',N'Châu Thành - Tiền Giang','TH01'),
+KETQUA(MaHV, MaMH, Diem, KQThi) 
+ INSERT INTO KETQUA VALUES('HV001','LRCD',7,NULL),
+('HV001','MMT',8,NULL)
+Câu 2.	Sử dụng câu lệnh để thực hiện các yêu cầu sau: 
+a)	Hãy cập nhật SiSo lớp TH01 là 15 hs 
+UPDATE LOP SET SiSo = 15 WHERE MaLop='TH01'
+b)	Cập nhật KQThi là ‘Đạt’ cho những học viên có điểm >=5 và  “Hỏng” cho những học viên có điểm dưới 5
+UPDATE KETQUA
+SET KQThi = CASE WHEN Diem >5 THEN N'Đạt' ELSE N'Hỏng' END
+c)	In ra danh sách những học viên có điểm từ 5 trở lên
+SELECT DISTINCT HV.* FROM HOCVIEN HV INNER JOIN KETQUA KQ ON HV.MaHV=KQ.MaHV WHERE DIEM>=5
+Hoặc:
+SELECT DISTINCT HV.* FROM HOCVIEN HV, KETQUA KQ 
+  WHERE HV.MaHV=KQ.MaHV AND DIEM>=5
+d)	Hãy lập danh sách học viên Nam có sinh ở Tiền Giang và sắp xếp giảm dần theo ngày sinh?
+SELECT * FROM  HOCVIEN
+WHERE noisinh LIKE N'% Tiền Giang' AND gioiTinh='Nam' 
+ORDER BY NgSinh ASC
+e)	Hãy tìm học viên đạt điểm cao nhất ?
+SELECT TOP 1 WITH TIES HV.* FROM HOCVIEN HV, KETQUA KQ
+WHERE HV.mahv=KQ.mahv  ORDER BY Diem DESC
+Hoặc SELECT * FROM HOCVIEN
+WHERE MaHV IN (SELECT MAX(MaHV) FROM KETQUA)
+f)	Hãy lập danh sách học viên chưa tham gia thi 
+SELECT * FROM HOCVIEN 
+WHERE MaHV NOT IN (SELECT MaHV FROM KETQUA)
+g)	Hãy thống kê những học viên tham gia thi từ 2 môn trở lên. Thông tin gồm: HoTenHV, TongSoLuong_Mon ?
+SELECT A.MaHV, HoHV +' '+ TenHV AS HoTen, 
+COUNT(MaMH) AS TongSoLuong_Mon
+FROM HOCVIEN A, KETQUA B
+WHERE A.MAHV=B.MAHV GROUP BY HoHV,TenHV 
+HAVING count(MAMH)>=2
+Câu 3.	Viết thủ tục nội tại sau: 
+a)	Viết thủ tục nhập dữ liệu cho bảng KetQua, với các đối số của thủ tục là các giá trị cần thêm vào bảng kết quả ? 
+CREATE PROC pr_ insert_ketqua
+	 @Mahv VARCHAR(10), 	 @MaMH NVARCHAR(5),
+	 @Diemmh decimal(5,2), 	 @Ketquathi nvarchar(15)
+ AS
+	 BEGIN  INSERT KETQUA VALUES(@Mahv, @Mamh, @Diemmh, @Ketquathi)
+	 END
+ Chèn giá trị: Exce pr_ insert_ketqua 'HV005', 'THVP',4,NULL 
+b)	Viết thủ tục nhập vào mã số học viên in tất cả thông tin liên quan đến kết quả thi của học viên đó? 
+GO
+ CREATE PROCEDURE PR_KQT @MaSoTS VARCHAR(10) 
+ AS 
+	 BEGIN
+		SELECT KQ.*
+		FROM HOCVIEN HV, KETQUA KQ
+		WHERE HV.MaHV=KQ.MaHV AND KQ.MaHV=@MaSoTS
+	 END
+EXEC PR_KQT 'HV001'
