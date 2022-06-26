@@ -1,0 +1,123 @@
+Câu 1: Hãy thực hiện các yêu cầu sau:
+a.	Hãy cho biết chức năng của đối tượng Connection trong .Net Data Provider?.
+Connection: thiết lập kết nối tới nguồn dữ liệu
+b.	Hãy trình bày các thuộc tính và phương thức của Connection?. 
+	Thuộc tính ConnectionString: truyền vào chuỗi kết nối tới nguồn dữ liệu
+	Phương thức Open: mở kết nối
+	Phương thức Close: đóng kết nối
+c.	 Hãy viết một đoạn mã lệnh có sử dụng những thuộc tính và phương thức của Connection?
+Gợi ý
+-	Khai báo thư viện
+
+using System.Data.SqlClient;
+
+-	Khai báo SqlConnection. Các thao tác để lấy ConnectionString
+
+public SqlConnection kn = new SqlConnection("Data Source=MINHKHA\\SQLEXPRESS;Initial Catalog=QLBH_MinhKha;Integrated Security=True");
+
+-	Viết hàm đóng, mở kết nối
+
+		public void mokn()
+        {
+            kn.Open();
+        }
+        public void dongkn()
+        {
+            kn.Close();
+        }
+
+
+
+
+
+
+
+
+
+
+
+Câu 2: Hãy cho biết Combobox là gì?.Hãy viết một thủ tục có chức năng đưa dữ liệu mã phòng ban từ bảng Phòng ban vào Combobox? 
+- ComboBox là công cụ điều khiển có thể hiển thị như một Textbox kết hợp với một Listbox, cho phép người dùng lựa chọn các mục từ danh sách hoặc nhập một giá trị mới.
+-Viết thủ tục load Combobox (cả đoạn Code)
+public void loadcombobox()
+        {
+            connec = kndl.kn;
+            connec.Open();
+            SqlCommand cm = new SqlCommand("select manv from nhanvien", connec);
+            SqlDataAdapter da = new SqlDataAdapter(cm);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "nhanvien");
+            manv.DataSource = ds.Tables[0];
+            manv.DisplayMember = "manv";
+            manv.ValueMember = "manv";
+        }
+
+Câu 3: Hãy thực hiện các yêu cầu sau:
+a.	Hãy cho biết chức năng của đối tượng Command trong .Net Data Provider?.
+Command: thực thi các câu lệnh truy vấn với nguồn dữ liệu từ một Connection
+b.	 Hãy trình bày các thuộc tính và phương thức của Command?. 
+	Thuộc tính CommandText: truyền vào câu lệnh SQL hoặc tên Stored procedure
+	Thuộc tính CommandType: kiểu câu lệnh SQL là StoredProcedure,
+TableDirect hay Text
+	Thuộc tính Connection: truyền vào đối tượng Connection
+	Phương thức ExecuteReader: thực thi với câu lệnh SQL Select và trả về luồng dữ liệu qua đối tượng DataReader
+	Phương thức ExecuteScalar: thực thi câu lệnh SQL Select và trả về một giá trị ở hàng đầu tiên và cột đầu tiên. Thích hợp với câu lệnh Select dạng thống kê như Count, Sum, AVG …
+	Phương thức ExecuteNonQuery: thực thi câu lệnh SQL như Insert, Update, Delete … và không trả về kết quả
+	Phương thức ExecuteXMLReader: thực thi câu lệnh truy vấn với các câu lệnh cho XML
+
+c.	 Hãy viết một đoạn mã lệnh có sử dụng những thuộc tính và phương thức của Command?
+-Viết thủ tục thêm/xóa/sua dữ liệu (Chọn 1 trong 3) 
+public void XoaCL(string MCl, string TCL)
+        {
+            string s = "Delete From chatlieu where machatlieu='" + MCl + "'";
+            SqlCommand scm = new SqlCommand(s, kn);
+            scm.ExecuteNonQuery();
+        }
+
+Câu 4: Hãy cho biết chức năng của DataTable?. Hãy sử dụng DataTable để tạo bảng và đưa dữ liệu từ bảng vào DataGridView trong C#?
+-	DataTable hiển thị dữ liệu quan hệ thành dạng bảng. ADO.NET cung cấp một lớp DataTable để tạo và sử dụng bảng dữ liệu một cách độc lập. DataTable cũng có thể được sử dụng với Dataset. Ban đầu, khi chúng ta tạo DataTable, DataTable không có lược đồ bảng. Chúng ta có thể tạo lược đồ bảng bằng cách thêm các cột và các ràng buộc vào bảng. Sau khi xác định lược đồ bảng, chúng ta có thể thêm các hàng vào bảng.
+-	Viết thủ tục tạo bảng
+
+public DataTable taobang(string sql)
+        {
+            DataTable dta = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(sql, kn);
+            da.Fill(dta);
+            return dta;
+        }
+
+-	Viết thủ tục load dữ liệu
+
+public void loaddulieu()
+        {
+            string s = "Select * from hoadonct";
+            dgvhd.DataSource = kndl.taobang(s);
+        }
+
+
+Câu 5: Hãy thực hiện các yêu cầu sau:
+a.	Hãy cho biết chức năng của đối tượng DataReader và DataAdapter trong .Net Data Provider?.
+	DataReader: cung cấp một luồng (stream) dữ liệu chỉ đọc từ nguồn dữ liệu
+	DataAdapter: đặt dữ liệu vào DataSet và cập nhật dữ liệu từ DataSet về nguồn dữ liệu
+b.	 Hãy trình bày các thuộc tính và phương thức của hai đối tượng trên?.
+•	Phương thức Fill: đổ dữ liệu từ nguồn dữ liệu vào DataSet
+•	Phương thức Update: cập nhật dữ liệu từ DataSet tới nguồn dữ liệu
+c.	Hãy viết một đoạn mã lệnh có sử dụng những thuộc tính và phương thức của hai đối tượng trên?
+Câu 6: (1.5 điểm) Hãy cho biết chức năng của DataTable? Hãy viết đoạn mã lệnh có sử dụng DataTable
+Viết thủ tục load dữ liệu từ DataGridview lên trên (DgWcvd_CellContentClick)
+
+private void dgvhd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt = (DataTable)dgvhd.DataSource;
+            int tam = -1;
+            tam = dgvhd.SelectedCells[0].RowIndex;
+            DataRow dong = dt.Rows[tam];
+            SoHD.Text = dong["sohd"].ToString();
+            cbkh.Text = dong["makh"].ToString();
+            cbnv.Text = dong["manv"].ToString();
+            ngaylap.Text = dong["ngaylaphd"].ToString();  
+            SoHD.Enabled = false;
+        }
+
+
